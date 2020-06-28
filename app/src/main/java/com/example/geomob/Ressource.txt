@@ -1,0 +1,9 @@
+/************************************Algérie**************************************/
+1-nom:Algérie
+2-description : un pays d’Afrique du Nord faisant partie du Maghreb. Depuis 1962, elle est nommée en forme longue République algérienne démocratique et populaire, abrégée en RADP (en arabe ????????? ????????? ??????????? ??????? ; en tamazight ??????? ???????? ???????? ?????????? (Tagduda tamegdayt ta?erfant tadzayriyt)). Sa capitale est Alger, la ville la plus peuplée du pays, dans le Nord, sur la côte méditerranéenne.
+3-surface:2 381 741
+4-population :42 972 878
+5-flagUrl:https://fr.wikipedia.org/wiki/Algérie
+6-hymneUrl:https://en.wikipedia.org/wiki/File:Kassaman_instrumental.ogg
+
+ 
