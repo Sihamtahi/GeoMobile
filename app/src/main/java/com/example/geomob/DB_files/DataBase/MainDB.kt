@@ -4,19 +4,23 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.geomob.DB_files.*
 import com.example.geomob.DB_files.Dao.*
 import com.example.geomob.DB_files.Entity.ImagePays
+import com.example.geomob.DB_files.Entity.UiComponent
 import com.example.geomob.DB_files.Entity.VideoPays
 
 
-@Database(version = 1,entities = [
+@Database(version = 2,entities = [
     Pays::class,
     HistoriquePays :: class,
     PersoPays :: class,
     VideoPays :: class ,
     ImagePays :: class,
-    RessourcePays:: class
+    RessourcePays:: class,
+    UiComponent:: class
 ])
 abstract class AppDatabase : RoomDatabase() {
     abstract fun paysDao(): PaysDao
@@ -25,6 +29,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun imgDao(): ImgDao
     abstract fun videoDao(): VideoDao
     abstract fun persoDao(): PersoDao
+    abstract fun uiComponentDao():UiComponentDao
 
 }
 
@@ -33,11 +38,22 @@ class DatabaseClient private constructor(private val mCtx: Context) {
     //our app database object
     val appDatabase: AppDatabase
 
+    var  migrtion : Migration = object : Migration(1,2)
+    {
+        override fun migrate(database: SupportSQLiteDatabase)
+        {
+            database.execSQL("CREATE TABLE 'UiComponent' ('id' INTEGER DEFAULT 0 NOT NULL , 'titreUi' TEXT  , 'sousTitreUi' TEXT   ,  'urlAnimImg' TEXT ,   'paysId' INTEGER DEFAULT 0 NOT NULL," + "PRIMARY KEY('id') ,FOREIGN KEY(paysId) REFERENCES Pays(id) ON DELETE CASCADE) " )
+        }
+    }
     init {
 
         //creating the app database with Room database builder
         //MyToDos is the name of the database
-        appDatabase = Room.databaseBuilder(mCtx, AppDatabase::class.java, "MyToDos").build()
+        appDatabase = Room
+            .databaseBuilder(mCtx, AppDatabase::class.java, "MyToDos")
+            .addMigrations(migrtion)
+            .allowMainThreadQueries()
+            .build()
     }
 
     companion object {

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="@color/trans_yellow"
+              android:orientation="vertical">
+
+    <com.denzcoskun.imageslider.ImageSlider
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            app:auto_cycle="true"
+            app:delay="0"
+            android:id="@+id/slider"
+            app:period="3000"
+            app:error_image="@drawable/bg_grey"
+            app:placeholder="@drawable/bg_grey"
+            app:corner_radius="10"
+            android:layout_height="250dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futurabook"
+            android:textColor="@android:color/black"
+            android:textSize="20dp"
+            android:id="@+id/textHome"
+            android:text="Description"
+            android:textStyle="bold" android:layout_marginTop="8dp" android:layout_below="@+id/containerPlayer"
+            android:layout_alignParentStart="true" android:layout_marginStart="8dp"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:src="@drawable/bg_grey"
+            android:layout_width="115dp"
+            android:layout_height="96dp"
+            tools:srcCompat="@tools:sample/avatars"
+            android:id="@+id/imgFlag"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="11dp" android:layout_marginTop="18dp"
+            android:layout_below="@+id/slider"/>
+    <TextView
+            android:text="Surface(km* 2) :"
+            android:fontFamily="@font/futurabook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/surface" android:layout_marginTop="30dp"
+            android:layout_below="@+id/slider" android:layout_toEndOf="@+id/imgFlag"
+            android:layout_marginStart="15dp" android:textStyle="bold" android:textSize="18dp"
+            android:textColor="@android:color/black"/>
+    <TextView
+            android:text="Population(MH) :"
+            android:fontFamily="@font/futurabook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/population" android:layout_marginTop="18dp"
+            android:layout_below="@+id/surface" android:layout_toEndOf="@+id/imgFlag"
+            android:layout_marginStart="15dp" android:textStyle="bold" android:textSize="18dp"
+            android:textColor="@android:color/black"/>
+    <TextView
+            android:text="2 233 225"
+            android:fontFamily="@font/futurabook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textSurafce" android:layout_toEndOf="@+id/surface"
+            android:layout_marginStart="10dp" android:layout_marginTop="30dp" android:layout_below="@+id/slider"
+            android:textSize="17dp" android:textColor="@color/colorAccent" android:textStyle="bold"/>
+    <TextView
+            android:text="75,5"
+            android:fontFamily="@font/futurabook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textPopulation"
+            android:layout_toEndOf="@+id/population"
+            android:layout_marginStart="10dp" android:layout_marginTop="18dp"
+            android:layout_below="@+id/textSurafce" android:textSize="17dp" android:textColor="@color/colorAccent"
+            android:textStyle="bold"/>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/imgFlag"
+            android:background="@color/colorAccent"
+            android:layout_marginTop="20dp"
+            android:id="@+id/containerPlayer"
+    >
+
+    </RelativeLayout>
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textHome"
+            android:layout_marginTop="5dp">
+
+        <TextView
+                android:text="un pays d'Asie du Sud qui occupe la majeure partie du sous-continent indien. Sa capitale est New Delhi. L'Inde est le deuxième pays le plus peuplé et le septième pays le plus grand du monde. Le littoral indien s'étend sur plus de sept mille kilomètres. Le pays a des frontières communes avec le Pakistan au nord-ouest, la Chine au nord et à l'est-nord-est, le Népal au nord-est, le Bhoutan , le Bangladesh et la Birmanie à l'est-nord-est. Sur l'océan Indien, l'Inde est à proximité des Maldives au sud-sud-ouest, du Sri Lanka au sud et de l'Indonésie au sud-est. L'Inde revendique également une frontière avec l'Afghanistan au nord-ouest. L'Inde dispose de l'arme nucléaire depuis 1974 après avoir fait des essais officiels."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textDescription"
+                  />
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</RelativeLayout>
