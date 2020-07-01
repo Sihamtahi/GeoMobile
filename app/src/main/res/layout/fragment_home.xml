@@ -4,7 +4,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:background="@color/trans_yellow"
+                android:background="@color/blanc_cass"
               android:orientation="vertical">
 
     <com.denzcoskun.imageslider.ImageSlider
@@ -17,7 +17,7 @@
             app:error_image="@drawable/bg_grey"
             app:placeholder="@drawable/bg_grey"
             app:corner_radius="10"
-            android:layout_height="250dp"/>
+            android:layout_height="230dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,15 +29,14 @@
             android:textStyle="bold" android:layout_marginTop="8dp" android:layout_below="@+id/containerPlayer"
             android:layout_alignParentStart="true" android:layout_marginStart="8dp"/>
 
-    <androidx.appcompat.widget.AppCompatImageView
-            android:src="@drawable/bg_grey"
+    <ImageView
+            android:src="@drawable/ic_search_black"
             android:layout_width="115dp"
             android:layout_height="96dp"
-            tools:srcCompat="@tools:sample/avatars"
             android:id="@+id/imgFlag"
             android:layout_alignParentStart="true"
             android:layout_marginStart="11dp" android:layout_marginTop="18dp"
-            android:layout_below="@+id/slider"/>
+            android:layout_below="@+id/slider" android:visibility="visible"/>
     <TextView
             android:text="Surface(km* 2) :"
             android:fontFamily="@font/futurabook"
@@ -68,17 +67,79 @@
             android:layout_height="wrap_content" android:id="@+id/textPopulation"
             android:layout_toEndOf="@+id/population"
             android:layout_marginStart="10dp" android:layout_marginTop="18dp"
-            android:layout_below="@+id/textSurafce" android:textSize="17dp" android:textColor="@color/colorAccent"
+            android:layout_below="@+id/textSurafce"
+            android:textSize="17dp" android:textColor="@color/colorAccent"
             android:textStyle="bold"/>
     <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="70dp"
             android:layout_below="@+id/imgFlag"
-            android:background="@color/colorAccent"
-            android:layout_marginTop="20dp"
+            android:background="@color/blanc_cass"
+            android:layout_marginTop="32dp"
             android:id="@+id/containerPlayer"
     >
+        <Button
+                android:id="@+id/pauseBtn"
+                android:layout_marginBottom="1dp"
+                android:layout_marginEnd="29dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:enabled="false"
+                android:clickable="true"
+                android:background="@drawable/ic_pause_pink"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/playBtn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintVertical_bias="0.476" android:layout_width="40dp" android:layout_height="40dp"
+                android:layout_toStartOf="@+id/playBtn" android:layout_alignParentBottom="true"/>
 
+        <Button
+                android:id="@+id/playBtn"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="8dp"
+                android:clickable="true"
+                android:background="@drawable/ic_play_pink"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.476"
+                android:layout_marginEnd="30dp" app:layout_constraintEnd_toStartOf="@+id/stopBtn"
+                android:layout_width="40dp" android:layout_height="40dp" android:layout_toStartOf="@+id/stopBtn"
+                android:layout_alignParentBottom="true"/>
+
+        <Button
+                android:id="@+id/stopBtn"
+                android:layout_marginBottom="0dp"
+                android:layout_marginEnd="114dp"
+                android:layout_marginTop="8dp"
+                android:enabled="false"
+                android:clickable="true"
+                android:background="@drawable/ic_stop_pink"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.474"
+                android:layout_width="40dp" android:layout_height="40dp" android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"/>
+        <TextView
+                android:id="@+id/tv_pass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_alignParentBottom="true"
+                android:layout_marginBottom="46dp" android:layout_marginTop="5dp" android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" android:layout_marginStart="16dp" android:textSize="10dp"/>
+
+        <TextView
+                android:id="@+id/tv_due"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" android:layout_marginEnd="15dp"
+                android:layout_marginTop="5dp" android:layout_alignParentTop="true" android:layout_marginRight="15dp"
+                android:textSize="10dp"/>
+
+        <SeekBar
+                android:id="@+id/seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:saveEnabled="false" android:layout_marginTop="16dp" android:layout_alignParentTop="true"/>
     </RelativeLayout>
     <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -91,9 +152,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textDescription"
-                  />
+                android:fontFamily="@font/futurabook"
+                android:textSize="13dp"/>
 
     </androidx.core.widget.NestedScrollView>
+    <TextView
+            android:text="Hymne"
+            android:fontFamily="@font/futurabook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView2" android:layout_marginTop="11dp"
+            android:layout_below="@+id/imgFlag" android:layout_alignParentStart="true"
+            android:layout_marginStart="12dp" android:textStyle="bold" android:textColor="@android:color/black"
+            android:textSize="20dp"/>
 
 
 </RelativeLayout>

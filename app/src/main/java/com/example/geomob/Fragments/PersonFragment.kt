@@ -1,4 +1,3 @@
-//package www.sanju.customtabbar.Fragments
 package com.example.geomob
 
 import android.annotation.SuppressLint
@@ -8,6 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.geomob.Adapter.PersonAdapter
+import com.example.geomob.Adapter.RessourceAdapter
+import com.example.geomob.DB_files.DataBase.DatabaseClient
 import com.example.geomob.DB_files.Entity.ImagePays
 
 
@@ -24,8 +28,14 @@ class PersonFragment (idP:Int) : Fragment() {
     {
         // Inflate the layout for this fragment
         var lay = inflater.inflate(R.layout.fragment_person, container, false)
-        var TextView = lay.findViewById<TextView>(R.id.textPerson)
-        TextView.text = " je suis dans le fragment ressource avec un id  " + paysNum
+        var recyclerHistorique = lay.findViewById<RecyclerView>(R.id.RecylerPerson)
+        var mLayoutManager : RecyclerView.LayoutManager
+        mLayoutManager = LinearLayoutManager(lay.context)
+        recyclerHistorique.layoutManager = mLayoutManager
+        var listeCompo = DatabaseClient.getAppDatabase(DatabaseClient.getInstance(lay.context))
+            .persoDao()
+            .getPersoPays(paysNum)
+        recyclerHistorique.adapter = PersonAdapter(lay.context,listeCompo)
         return lay
     }
 

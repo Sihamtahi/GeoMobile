@@ -6,8 +6,9 @@
     <color name="colorPrimary">#000</color>
     <color name="colorPrimaryDark">#000</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="transparent_color">#80000000</color>
+    <color name="transparent_color"></color>
     <color name="gold">#FFB300</color>
+    <color name="blanc_cass">#F5FBEF</color>
 
 
     <color name="trans_green">#7525D366</color>
