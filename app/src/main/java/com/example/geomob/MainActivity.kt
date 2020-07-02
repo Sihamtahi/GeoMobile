@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+       Toast.makeText(this,"Main activity is launched ",Toast.LENGTH_LONG)
         var  toursRV = findViewById<RecyclerView>(R.id.tours_RV)
         var linearLayoutManager = CenterZoomLayoutManager(this)
 
