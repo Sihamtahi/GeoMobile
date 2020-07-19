@@ -38,7 +38,7 @@ dependencies {
     //Glide pour les images
     def glideVersion = "4.9.0"
     implementation "com.github.bumptech.glide:glide:$glideVersion"
-    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
     //recycler view
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     //room database

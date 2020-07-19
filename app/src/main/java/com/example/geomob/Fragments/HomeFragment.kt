@@ -13,6 +13,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.module.GlideModule
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.geomob.DB_files.DataBase.DatabaseClient
@@ -80,7 +82,7 @@ class HomeFragment (idP:Int): Fragment() {
                 Toast.makeText(lay.context, "media playing", Toast.LENGTH_SHORT).show()
 
             }
-            /**************************Initialiser seek bar  ***************************************/
+            /**************************Initialiser seek bar ***************************************/
             seek_bar.max = mediaPlayer.seconds
 
             runnable =  Runnable {
