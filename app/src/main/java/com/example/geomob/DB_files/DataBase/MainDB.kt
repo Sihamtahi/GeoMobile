@@ -21,7 +21,9 @@ import com.example.geomob.DB_files.Entity.VideoPays
     ImagePays :: class,
     RessourcePays:: class,
     UiComponent:: class
+
 ])
+
 abstract class AppDatabase : RoomDatabase() {
     abstract fun paysDao(): PaysDao
     abstract fun historiqueDao(): HistoriqueDao
