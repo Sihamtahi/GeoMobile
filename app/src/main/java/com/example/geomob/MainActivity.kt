@@ -1,11 +1,16 @@
 package com.example.geomob
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +22,7 @@ import com.example.geomob.DB_files.HistoriquePays
 import com.example.geomob.DB_files.Pays
 import com.example.geomob.DB_files.PersoPays
 import com.example.geomob.DB_files.RessourcePays
+import kotlinx.android.synthetic.main.layout_dialog_info.*
 import www.sanju.tourism.Adapter.CenterZoomLayoutManager
 import www.sanju.tourism.Adapter.TourAdapter
 import www.sanju.tourism.Model.Places
@@ -27,8 +33,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Toast.makeText(this,"Main activity is launched ",Toast.LENGTH_LONG)
-        var  toursRV = findViewById<RecyclerView>(R.id.tours_RV)
+        Toast.makeText(this, "Main activity is launched ", Toast.LENGTH_LONG)
+        var toursRV = findViewById<RecyclerView>(R.id.tours_RV)
         var linearLayoutManager = CenterZoomLayoutManager(this)
         linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         linearLayoutManager.reverseLayout = true
@@ -38,78 +44,61 @@ class MainActivity : AppCompatActivity() {
         snapHelper.attachToRecyclerView(toursRV)
         toursRV.isNestedScrollingEnabled = false
 
-       var listeCompo = DatabaseClient.getAppDatabase(DatabaseClient.getInstance(applicationContext)).uiComponentDao().getAll()
-        toursRV.adapter = UiComponentAdapter(this,listeCompo)
-      //  updatePaysFlags()
-        // getPays()
+        var listeCompo =
+            DatabaseClient.getAppDatabase(DatabaseClient.getInstance(applicationContext)).uiComponentDao().getAll()
+        toursRV.adapter = UiComponentAdapter(this, listeCompo)
+
+
+        chercerNvPays()
+
+
     }
+   private fun chercerNvPays()
+   {
+       var listeImg = DatabaseClient.getAppDatabase(DatabaseClient.getInstance(this))
+           .paysDao()
+           .getAll()
 
-    private fun getPays() {
-        class GetTasks : AsyncTask<Void, Void?, List<Pays>>() {
+       var pays :Pays  = Pays()
+       var stop = false
+        var index  = 0
 
-            override fun doInBackground(vararg voids: Void): List<Pays> {
-                val liste:List<Pays> = DatabaseClient.getAppDatabase(DatabaseClient.getInstance(applicationContext))
-                    .paysDao()
-                    .getAll()
-                return liste
-            }
+       while (!stop && index < listeImg.size )
+       {
+           pays  = listeImg.get(index)
+               if (pays.getIsExplored() == false)
+           {
+              stop = true
+           }
+           else{
+                   index  = index + 1
+               }
+       }
+       if ( stop == true) {
+           showAlertDialog(pays)
+       }
+   }
+    private fun showAlertDialog(p :Pays) {
+        val placeForInformation = LayoutInflater.from(this).inflate(R.layout.layout_dialog_info, null)
+        val dial = AlertDialog.Builder(this)
+        val cancel_btn: Button = placeForInformation.findViewById(R.id.cancel_dialog)
+        val oui_btn: Button = placeForInformation.findViewById(R.id.oui_dialog)
+        dial.setView(placeForInformation)
+        var d = dial.show()
 
-            override fun onPostExecute(pays: List<Pays>) {
-                super.onPostExecute(pays)
-                Log.d("Sonthing","*********************************************Les pays**********************************************************")
-                var p : Pays
-                for (p in pays )
-                {
-                    Log.d("Sonthing","\n\n\n\n\n id = "+  p.getId() +" "+p.getNom()+ " "+ p.getDescription() +  " "+ p.getIsExplored() + " "+ p.getPopulation() + " "+ p.getSurface() + " "+ p.getFlagUrl() + " "+ p.getHymneUrl())
-                }
+        d.window.setBackgroundDrawableResource(R.drawable.dialog_backgroun_region_info)
+        placeForInformation.findViewById<TextView>(R.id.nomPays).text= p.getNom()
 
-            }
+        cancel_btn.setOnClickListener {
+            d.dismiss()
         }
-        val gt = GetTasks()
-        gt.execute()
 
-    }
-
-    fun updatePaysFlags()
-    {
-        var liste = DatabaseClient.getAppDatabase(DatabaseClient.getInstance(this))
-            .paysDao()
-            .getAll()
-
-        var modified = liste.get(0)
-        modified.setFlagUrl("https://www.countries-ofthe-world.com/flags-normal/flag-of-Algeria.png")
-        modified.setPopulation("42,972")
-        modified.setHymneUrl("https://upload.wikimedia.org/wikipedia/commons/7/79/National_anthem_of_Algeria%2C_by_the_U.S._Navy_Band.oga")
-        DatabaseClient.getAppDatabase(DatabaseClient.getInstance(this)).paysDao().update(modified)
-
-
-         modified = liste.get(1)
-        modified.setFlagUrl("https://www.countries-ofthe-world.com/flags-normal/flag-of-Tunisia.png")
-        modified.setHymneUrl("https://upload.wikimedia.org/wikipedia/commons/2/23/Humat_al-Hima.ogg")
-        DatabaseClient.getAppDatabase(DatabaseClient.getInstance(this)).paysDao().update(modified)
-
-         modified = liste.get(2)
-        modified.setFlagUrl("https://www.countries-ofthe-world.com/flags-normal/flag-of-India.png")
-        DatabaseClient.getAppDatabase(DatabaseClient.getInstance(this)).paysDao().update(modified)
-
-         modified = liste.get(3)
-        modified.setFlagUrl("https://www.countries-ofthe-world.com/flags-normal/flag-of-United-Kingdom.png")
-        DatabaseClient.getAppDatabase(DatabaseClient.getInstance(this)).paysDao().update(modified)
-
-         modified = liste.get(4)
-        modified.setFlagUrl("https://www.countries-ofthe-world.com/flags-normal/flag-of-United-States-of-America.png")
-        modified.setHymneUrl("https://upload.wikimedia.org/wikipedia/commons/2/25/\"The_Star-Spangled_Banner\"_performed_by_the_United_States_Navy_Band.mp3")
-        DatabaseClient.getAppDatabase(DatabaseClient.getInstance(this)).paysDao().update(modified)
-
-         modified = liste.get(5)
-        modified.setFlagUrl("https://www.countries-ofthe-world.com/flags-normal/flag-of-Egypt.png")
-        modified.setHymneUrl("https://upload.wikimedia.org/wikipedia/commons/f/f2/Bilady%2C_Bilady%2C_Bilady.ogg")
-        DatabaseClient.getAppDatabase(DatabaseClient.getInstance(this)).paysDao().update(modified)
-
-         modified = liste.get(6)
-        modified.setFlagUrl("https://www.countries-ofthe-world.com/flags-normal/flag-of-Brazil.png")
-        modified.setHymneUrl("https://upload.wikimedia.org/wikipedia/commons/0/0d/Hino-Nacional-Brasil-instrumental-mec.ogg")
-        DatabaseClient.getAppDatabase(DatabaseClient.getInstance(this)).paysDao().update(modified)
+        oui_btn.setOnClickListener {
+            val intent = Intent(this,  DetailPage::class.java)
+            intent.putExtra("idPays",p.getId())
+            d.dismiss()
+           this.startActivity(intent)
+        }
 
     }
 }

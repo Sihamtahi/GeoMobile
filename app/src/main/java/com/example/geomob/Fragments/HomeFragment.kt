@@ -36,6 +36,9 @@ class HomeFragment (idP:Int): Fragment() {
         // Inflate the layout for this fragment
          var lay = inflater.inflate(R.layout.fragment_home, container, false)
          var pays = getPays(paysNum,lay.context)
+        /**Mettre à jour dans la base de données pour indiquer que ce pays a été visité**/
+        pays.setIsExplored(true)
+        DatabaseClient.getAppDatabase(DatabaseClient.getInstance(lay.context)).paysDao().update(pays)
         /**Slider**/
         var slider = lay.findViewById<ImageSlider >(R.id.slider)
         slider.setImageList(TransformImgPaysToSliderModel(paysNum,lay.context))
