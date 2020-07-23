@@ -13,7 +13,7 @@ import com.example.geomob.DB_files.Entity.UiComponent
 import com.example.geomob.DB_files.Entity.VideoPays
 
 
-@Database(version = 2,entities = [
+@Database(version = 4,entities = [
     Pays::class,
     HistoriquePays :: class,
     PersoPays :: class,
@@ -21,7 +21,10 @@ import com.example.geomob.DB_files.Entity.VideoPays
     ImagePays :: class,
     RessourcePays:: class,
     UiComponent:: class
+
+
 ])
+
 abstract class AppDatabase : RoomDatabase() {
     abstract fun paysDao(): PaysDao
     abstract fun historiqueDao(): HistoriqueDao
@@ -38,6 +41,7 @@ class DatabaseClient private constructor(private val mCtx: Context) {
     //our app database object
     val appDatabase: AppDatabase
 
+<<<<<<< HEAD
     var  migrtion : Migration = object : Migration(3,2)
     {
         override fun migrate(database: SupportSQLiteDatabase)
@@ -45,6 +49,31 @@ class DatabaseClient private constructor(private val mCtx: Context) {
             //database.execSQL("CREATE TABLE 'UiComponent' ('id' INTEGER DEFAULT 0 NOT NULL , 'titreUi' TEXT  , 'sousTitreUi' TEXT   ,  'urlAnimImg' TEXT ,   'paysId' INTEGER DEFAULT 0 NOT NULL," + "PRIMARY KEY('id') ,FOREIGN KEY(paysId) REFERENCES Pays(id) ON DELETE CASCADE) " )
           //  database.execSQL("ALTER TABLE PersoPays " + " ADD COLUMN 'avatar' TEXT  NOT NULL default 'lll' ")
             //database.execSQL("ALTER TABLE PersoPays " + " ADD COLUMN 'description' TEXT NOT NULL default 'lll'")
+=======
+    var  migrtion : Migration = object : Migration(3,4)
+    {
+        override fun migrate(database: SupportSQLiteDatabase)
+        {
+            //Create new table PersoPays_new
+            database.execSQL("CREATE TABLE 'PersoPays_new' ('id' INTEGER DEFAULT 0 NOT NULL , 'nomPerso' TEXT  , 'prenomPerso' TEXT  ,  'avatar' TEXT , 'description' TEXT ,   'paysId' INTEGER DEFAULT 0 NOT NULL," + "PRIMARY KEY('id') ,FOREIGN KEY(paysId) REFERENCES Pays(id) ON DELETE CASCADE) " )
+
+            // Remove the old table
+            database.execSQL(" DROP TABLE" + "'PersoPays' ")
+
+            // Change the table name to the correct one
+            database.execSQL("ALTER TABLE PersoPays_new RENAME TO"+" PersoPays")
+
+          //  database.execSQL("ALTER TABLE PersoPays "
+            //        +"ADD COLUMN description TEXT DEFAULT NOT NULL")
+            //database.execSQL("ALTER TABLE PersoPays "
+              //      +"ADD COLUMN description TEXT DEFAULT NOT NULL")
+
+// Copy the data
+       //     database.execSQL(
+         //       "INSERT INTO users_new (userid, username, last_update) SELECT userid, username, last_update FROM users")
+
+
+>>>>>>> 8d0bcb7ef1a2462d72b886fd7137e81f6db84dc4
         }
     }
     init {

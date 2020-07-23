@@ -20,6 +20,7 @@ class DetailPage : AppCompatActivity() {
     private lateinit var notiBtn:ImageButton
     private lateinit var searchBtn:ImageButton
     private lateinit var profileBtn: ImageButton
+    private lateinit var tweetsBtn: ImageButton
 
     private lateinit var mViewPager: ViewPager
     private lateinit var mPagerViewAdapter: PagerViewAdapter
@@ -40,6 +41,7 @@ class DetailPage : AppCompatActivity() {
         profileBtn = findViewById(R.id.profileBtn)
         searchBtn = findViewById(R.id.searchBtn)
         notiBtn = findViewById(R.id.notiBtn)
+        tweetsBtn = findViewById(R.id.tweetsBtn)
 
 
         //onclick listner
@@ -70,10 +72,15 @@ class DetailPage : AppCompatActivity() {
 
         }
 
+        tweetsBtn.setOnClickListener {
+            mViewPager.currentItem = 5
+
+        }
+
 
         mPagerViewAdapter = PagerViewAdapter(supportFragmentManager,idPays)
         mViewPager.adapter = mPagerViewAdapter
-        mViewPager.offscreenPageLimit = 5
+        mViewPager.offscreenPageLimit = 6
 
         mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
@@ -107,8 +114,7 @@ class DetailPage : AppCompatActivity() {
             addBtn.setImageResource(R.drawable.ic_video_black)
             notiBtn.setImageResource(R.drawable.ic_person_black)
             profileBtn.setImageResource(R.drawable.ic_ressource_black)
-
-
+            tweetsBtn.setImageResource(R.drawable.tweets)
 
 
         }
@@ -118,7 +124,7 @@ class DetailPage : AppCompatActivity() {
             addBtn.setImageResource(R.drawable.ic_video_black)
             notiBtn.setImageResource(R.drawable.ic_person_black)
             profileBtn.setImageResource(R.drawable.ic_ressource_black)
-
+            tweetsBtn.setImageResource(R.drawable.tweets)
 
 
 
@@ -129,7 +135,7 @@ class DetailPage : AppCompatActivity() {
             addBtn.setImageResource(R.drawable.ic_video_pink)
             notiBtn.setImageResource(R.drawable.ic_person_black)
             profileBtn.setImageResource(R.drawable.ic_ressource_black)
-
+            tweetsBtn.setImageResource(R.drawable.tweets)
         }
         if (position == 3) {
             homeBtn.setImageResource(R.drawable.ic_home_black_)
@@ -137,7 +143,7 @@ class DetailPage : AppCompatActivity() {
             addBtn.setImageResource(R.drawable.ic_video_black)
             notiBtn.setImageResource(R.drawable.ic_perosn_pink)
             profileBtn.setImageResource(R.drawable.ic_ressource_black)
-
+            tweetsBtn.setImageResource(R.drawable.tweets)
         }
         if (position == 4) {
             homeBtn.setImageResource(R.drawable.ic_home_black_)
@@ -145,7 +151,15 @@ class DetailPage : AppCompatActivity() {
             addBtn.setImageResource(R.drawable.ic_video_black)
             notiBtn.setImageResource(R.drawable.ic_person_black)
             profileBtn.setImageResource(R.drawable.ic_ressouce_pink)
-
+            tweetsBtn.setImageResource(R.drawable.tweets)
+        }
+        if (position == 5) {
+            homeBtn.setImageResource(R.drawable.ic_home_black_)
+            searchBtn.setImageResource(R.drawable.ic_history_black)
+            addBtn.setImageResource(R.drawable.ic_video_black)
+            notiBtn.setImageResource(R.drawable.ic_person_black)
+            profileBtn.setImageResource(R.drawable.ic_ressource_black)
+            tweetsBtn.setImageResource(R.drawable.tweets_pink)
         }
 
 

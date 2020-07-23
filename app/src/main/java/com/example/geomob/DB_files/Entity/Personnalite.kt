@@ -32,6 +32,13 @@ class PersoPays
     private var description: String = "lll"
 
 
+    @ColumnInfo(name = "avatar")
+    private var avatar: String? = null
+
+    @ColumnInfo(name = "description")
+    private var description: String? = null
+
+
     /*
 * Getters and Setters
 * */
@@ -81,4 +88,9 @@ class PersoPays
     fun setDescription(description:String){
         this.description = description
     }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 8d0bcb7ef1a2462d72b886fd7137e81f6db84dc4
 }
