@@ -38,11 +38,13 @@ class DatabaseClient private constructor(private val mCtx: Context) {
     //our app database object
     val appDatabase: AppDatabase
 
-    var  migrtion : Migration = object : Migration(1,2)
+    var  migrtion : Migration = object : Migration(3,2)
     {
         override fun migrate(database: SupportSQLiteDatabase)
         {
-            database.execSQL("CREATE TABLE 'UiComponent' ('id' INTEGER DEFAULT 0 NOT NULL , 'titreUi' TEXT  , 'sousTitreUi' TEXT   ,  'urlAnimImg' TEXT ,   'paysId' INTEGER DEFAULT 0 NOT NULL," + "PRIMARY KEY('id') ,FOREIGN KEY(paysId) REFERENCES Pays(id) ON DELETE CASCADE) " )
+            //database.execSQL("CREATE TABLE 'UiComponent' ('id' INTEGER DEFAULT 0 NOT NULL , 'titreUi' TEXT  , 'sousTitreUi' TEXT   ,  'urlAnimImg' TEXT ,   'paysId' INTEGER DEFAULT 0 NOT NULL," + "PRIMARY KEY('id') ,FOREIGN KEY(paysId) REFERENCES Pays(id) ON DELETE CASCADE) " )
+          //  database.execSQL("ALTER TABLE PersoPays " + " ADD COLUMN 'avatar' TEXT  NOT NULL default 'lll' ")
+            //database.execSQL("ALTER TABLE PersoPays " + " ADD COLUMN 'description' TEXT NOT NULL default 'lll'")
         }
     }
     init {
@@ -51,8 +53,8 @@ class DatabaseClient private constructor(private val mCtx: Context) {
         //MyToDos is the name of the database
         appDatabase = Room
             .databaseBuilder(mCtx, AppDatabase::class.java, "MyToDos")
-            .addMigrations(migrtion)
             .allowMainThreadQueries()
+            .addMigrations(migrtion)
             .build()
     }
 

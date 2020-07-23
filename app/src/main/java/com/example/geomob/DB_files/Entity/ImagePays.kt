@@ -26,6 +26,7 @@ class ImagePays
     private var paysId: Int = 0
 
 
+
     /*
 * Getters and Setters
 * */
@@ -55,6 +56,5 @@ class ImagePays
     fun setUrlImg(url: String) {
         this.urlImg= url
     }
-
 
 }

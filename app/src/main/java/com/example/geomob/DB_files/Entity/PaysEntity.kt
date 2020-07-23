@@ -31,6 +31,8 @@ class Pays
 
     @ColumnInfo(name = "isExplored")
     private var isExplored: Boolean? = false
+
+
     /*
     * Getters and Setters
     * */

@@ -50,6 +50,8 @@ class MainActivity : AppCompatActivity() {
 
 
         chercerNvPays()
+       // updatePersonnes()
+        getPerso()
 
 
     }
@@ -101,4 +103,35 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+    /****/
+
+    private fun getPerso() {
+        class GetTasks : AsyncTask<Void, Void?, List<PersoPays>>() {
+
+            override fun doInBackground(vararg voids: Void): List<PersoPays> {
+                Log.d("Sonthing","je suis dans l'historique n les pays agui ")
+                val liste:List<PersoPays> = DatabaseClient.getAppDatabase(DatabaseClient.getInstance(applicationContext))
+                    .persoDao()
+                    .getAll()
+
+                return liste
+            }
+
+            override fun onPostExecute(perso: List<PersoPays>) {
+                super.onPostExecute(perso)
+                var p : Pays
+                Log.d("Sonthing","***************************************Personnes********************************************************************************************")
+                for (p in perso)
+                {
+                    Log.d("Sonthing","\n\n\n\n\n id = "+  p.getId() +" "+p.getNomPerso()+ " "+ p.getPrenomPerso() + " " )
+                }
+
+            }
+        }
+
+        val gt = GetTasks()
+        gt.execute()
+
+    }
+
 }
