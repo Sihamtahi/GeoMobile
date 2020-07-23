@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.geomob.*
+import com.example.geomob.Fragments.TweetsFragment
 
 
 internal class PagerViewAdapter(fm: FragmentManager?,idPays:Int) : FragmentPagerAdapter(fm!!) {
@@ -25,13 +26,16 @@ internal class PagerViewAdapter(fm: FragmentManager?,idPays:Int) : FragmentPager
             4 -> {
                 RessourceFragment(id)
             }
+            5 -> {
+                TweetsFragment(id)
+            }
             else -> HomeFragment(id)
         }
     }
 
     override fun getCount(): Int {
 
-        return 5
+        return 6
     }
 
 }

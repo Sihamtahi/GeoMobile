@@ -30,11 +30,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:background="@android:color/white"
-                android:padding="15dp"
-                android:src="@drawable/ic_home_black_"
+                android:padding="5dp"
+                app:srcCompat="@drawable/ic_home_black_"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
 
         <ImageButton
@@ -44,8 +44,8 @@
                 android:layout_margin="10dp"
                 android:layout_marginStart="52dp"
                 android:background="@android:color/white"
-                android:padding="15dp"
-                android:src="@drawable/ic_history_black"
+                android:padding="5dp"
+                app:srcCompat="@drawable/ic_history_black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -60,8 +60,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@android:color/white"
-                android:padding="15dp"
-                android:src="@drawable/ic_video_black"
+                android:padding="5dp"
+                app:srcCompat="@drawable/ic_video_black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -75,8 +75,8 @@
                 android:layout_margin="10dp"
                 android:layout_marginStart="52dp"
                 android:background="@android:color/white"
-                android:padding="15dp"
-                android:src="@drawable/ic_person_black"
+                android:padding="5dp"
+                app:srcCompat="@drawable/ic_person_black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -89,8 +89,18 @@
                 android:layout_margin="10dp"
                 android:layout_marginEnd="40dp"
                 android:background="@android:color/white"
-                android:padding="15dp"
-                android:src="@drawable/ic_ressource_black"
+                    android:padding="10dp"
+                app:srcCompat="@drawable/ic_ressource_black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        <ImageButton
+                android:id="@+id/tweetsBtn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@android:color/white"
+                android:padding="10dp"
+                app:srcCompat="@drawable/tweets"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

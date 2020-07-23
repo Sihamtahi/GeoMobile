@@ -26,6 +26,13 @@ class PersoPays
     @ColumnInfo(name = "paysId")
     private var paysId: Int = 0
 
+    @ColumnInfo(name = "avatar")
+    private var avatar: String? = null
+
+    @ColumnInfo(name = "description")
+    private var description: String? = null
+
+
     /*
 * Getters and Setters
 * */
@@ -60,5 +67,21 @@ class PersoPays
     fun setPrenomPerso(prenom: String) {
         this.prenomPerso= prenom
     }
+
+    fun getAvatar() : String? {
+        return avatar
+    }
+
+    fun setAvatar(avatar:String){
+        this.avatar = avatar
+    }
+    fun getDescription() : String? {
+        return description
+    }
+
+    fun setDescription(description:String){
+        this.description = description
+    }
+
 
 }

@@ -30,6 +30,7 @@ class RessourceFragment(idP:Int) : Fragment() {
 
         var recyclerHistorique = lay.findViewById<RecyclerView>(R.id.RecylerRessource)
         var mLayoutManager : RecyclerView.LayoutManager
+
         mLayoutManager = LinearLayoutManager(lay.context)
         recyclerHistorique.layoutManager = mLayoutManager
         var listeCompo = DatabaseClient.getAppDatabase(DatabaseClient.getInstance(lay.context))
